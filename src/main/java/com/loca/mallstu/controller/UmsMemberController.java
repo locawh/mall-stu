@@ -1,7 +1,5 @@
 package com.loca.mallstu.controller;
 
-import com.loca.mallstu.service.UmsMemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class UmsMemberController {
-
 
 
 }
