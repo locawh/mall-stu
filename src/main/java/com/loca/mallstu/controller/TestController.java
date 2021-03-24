@@ -1,5 +1,9 @@
 package com.loca.mallstu.controller;
 
+import com.loca.mallstu.bean.po.UserPO;
+import com.loca.mallstu.common.CommonResult;
+import com.loca.mallstu.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,8 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class TestController {
 
+    @Autowired
+    private TestService testService;
+
     @RequestMapping("test")
-    public String test() {
-        return "loca";
+    public CommonResult<String> test() {
+        return CommonResult.success("hello! loca");
+    }
+
+    @RequestMapping("addUser")
+    public Boolean addUser() {
+        System.out.println("sdfsd");
+        UserPO userPO = new UserPO();
+        userPO.setName("loca");
+        userPO.setAge(24);
+        return testService.addUser(userPO);
     }
 }
