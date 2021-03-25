@@ -41,6 +41,10 @@ public class CommonResult<T> {
         return new CommonResult<>(ResultCode.FAILED.getCode(), message, data);
     }
 
+    public static <T> CommonResult<T> failed(String message) {
+        return new CommonResult<>(ResultCode.FAILED.getCode(), message, null);
+    }
+
     public static <T> CommonResult<T> failed(IErrorCode errorCode) {
         return new CommonResult<>(errorCode.getCode(), errorCode.getMessage(), null);
     }

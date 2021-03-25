@@ -3,6 +3,7 @@ package com.loca.mallstu.service.impl;
 import com.loca.mallstu.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,6 +11,7 @@ import java.util.concurrent.TimeUnit;
  * @author wangHeng
  * @date  2021-03-24 16:44
  */
+@Service
 public class RedisServiceImpl implements RedisService {
 
     @Autowired

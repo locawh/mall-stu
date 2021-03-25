@@ -20,11 +20,11 @@ public interface UmsMemberService {
     /**
      *<h2>校验手机号是否匹配验证码</h2>
      * @param telephone
-	 * @param verification
-     * @return com.loca.mallstu.common.CommonResult<java.lang.Boolean>
+	 * @param verificationCode
+     * @return com.loca.mallstu.common.CommonResult<java.lang.String>
      * @author wangheng
      * @date 2021/3/24 18:07
      */
-    CommonResult<Boolean> checkVerificationCode(String telephone, String verification);
+    CommonResult<String> checkVerificationCode(String telephone, String verificationCode);
 
 }

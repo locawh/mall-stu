@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -28,13 +29,29 @@ public class UmsMemberServiceImpl implements UmsMemberService {
 
     @Override
     public CommonResult<String> getVerificationCode(String telephone) {
-        redisService.set(REDIS_KEY_PREFIX_AUTH_CODE + telephone, telephone + new Random(6));
-        redisService.expire(REDIS_KEY_PREFIX_AUTH_CODE + telephone, AUTH_CODE_EXPIRE_SECONDS);
-        return CommonResult.success(telephone + new Random(6),"获取验证码成功!");
+        int code = new Random(6).nextInt(10);
+        StringBuffer sb = new StringBuffer();
+        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            sb.append(random.nextInt(10));
+        }
+        String key = REDIS_KEY_PREFIX_AUTH_CODE + telephone;
+        log.info("key={}", key);
+        log.info("value={}", sb.toString());
+        redisService.set(key, sb.toString());
+        redisService.expire(key, AUTH_CODE_EXPIRE_SECONDS);
+        return CommonResult.success(sb.toString(), "获取验证码成功!");
     }
 
     @Override
-    public CommonResult<Boolean> checkVerificationCode(String telephone, String verification) {
-        return null;
+    public CommonResult<String> checkVerificationCode(String telephone, String verificationCode) {
+        if (Objects.isNull(verificationCode)) {
+            return CommonResult.failed("请输入验证码!");
+        }
+        String code = redisService.get(REDIS_KEY_PREFIX_AUTH_CODE + telephone);
+        if (!Objects.equals(verificationCode, code)) {
+            return CommonResult.failed("验证码已过期,请重新获取!");
+        }
+        return CommonResult.success(code, "有效的验证码!");
     }
 }
