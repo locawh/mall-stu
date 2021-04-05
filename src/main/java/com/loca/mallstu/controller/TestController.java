@@ -28,7 +28,7 @@ public class TestController {
         System.out.println("sdfsd");
         UserPO userPO = new UserPO();
         userPO.setName("loca");
-        userPO.setAge(24);
+        userPO.setAge(26);
         return testService.addUser(userPO);
     }
 }
