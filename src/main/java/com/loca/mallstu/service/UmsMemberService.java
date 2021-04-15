@@ -1,6 +1,9 @@
 package com.loca.mallstu.service;
 
+import com.loca.mallstu.bean.po.UserPO;
 import com.loca.mallstu.common.CommonResult;
+
+import java.util.List;
 
 /**
  * @author wangHeng
@@ -26,5 +29,14 @@ public interface UmsMemberService {
      * @date 2021/3/24 18:07
      */
     CommonResult<String> checkVerificationCode(String telephone, String verificationCode);
+
+    /**
+     * 
+     * @param users 
+     * @return com.loca.mallstu.common.CommonResult<com.loca.mallstu.bean.po.UserPO>
+     * @author wangheng
+     * @date 2021/4/15 18:06
+     */
+    CommonResult<UserPO> createUserBatch(List<UserPO> users);
 
 }

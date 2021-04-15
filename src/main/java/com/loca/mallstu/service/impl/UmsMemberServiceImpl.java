@@ -1,15 +1,19 @@
 package com.loca.mallstu.service.impl;
 
+import com.loca.mallstu.bean.po.UserPO;
 import com.loca.mallstu.common.CommonResult;
 import com.loca.mallstu.service.RedisService;
 import com.loca.mallstu.service.UmsMemberService;
+import com.loca.mallstu.utils.AsyncThreadPoolUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.Future;
 
 /**
  * @author wangHeng
@@ -17,6 +21,7 @@ import java.util.Random;
  */
 @Slf4j
 @Service
+@SuppressWarnings("all")
 public class UmsMemberServiceImpl implements UmsMemberService {
 
     @Value("${redis.key.prefix.authCode}")
@@ -53,5 +58,11 @@ public class UmsMemberServiceImpl implements UmsMemberService {
             return CommonResult.failed("验证码已过期,请重新获取!");
         }
         return CommonResult.success(code, "有效的验证码!");
+    }
+
+    @Override
+    public CommonResult<UserPO> createUserBatch(List<UserPO> users) {
+        Future<Boolean> submit = (Future<Boolean>) AsyncThreadPoolUtil.BATCH_APPROVE_POOL.submit(new createUser(users));
+        return null;
     }
 }
