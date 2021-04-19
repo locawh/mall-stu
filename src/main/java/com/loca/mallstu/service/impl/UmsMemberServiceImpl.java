@@ -1,7 +1,11 @@
 package com.loca.mallstu.service.impl;
 
+import com.google.common.collect.Lists;
+import com.loca.mallstu.bean.po.DTO.BatchOperateResultDTO;
 import com.loca.mallstu.bean.po.UserPO;
 import com.loca.mallstu.common.CommonResult;
+import com.loca.mallstu.common.ResultCode;
+import com.loca.mallstu.dao.TestMapper;
 import com.loca.mallstu.service.RedisService;
 import com.loca.mallstu.service.UmsMemberService;
 import com.loca.mallstu.utils.AsyncThreadPoolUtil;
@@ -13,7 +17,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
 /**
  * @author wangHeng
@@ -31,6 +37,9 @@ public class UmsMemberServiceImpl implements UmsMemberService {
 
     @Autowired
     private RedisService redisService;
+
+    @Autowired
+    private TestMapper testMapper;
 
     @Override
     public CommonResult<String> getVerificationCode(String telephone) {
@@ -60,9 +69,4 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         return CommonResult.success(code, "有效的验证码!");
     }
 
-    @Override
-    public CommonResult<UserPO> createUserBatch(List<UserPO> users) {
-        Future<Boolean> submit = (Future<Boolean>) AsyncThreadPoolUtil.BATCH_APPROVE_POOL.submit(new createUser(users));
-        return null;
-    }
 }

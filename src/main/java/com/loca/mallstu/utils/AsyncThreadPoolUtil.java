@@ -11,5 +11,5 @@ import java.util.concurrent.TimeUnit;
 public class AsyncThreadPoolUtil {
     public static final ThreadPoolExecutor BATCH_APPROVE_POOL =
             new ThreadPoolExecutor(8, 16, 60, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10240),
-                    (r) -> new Thread(r, "批量审核线程池"));
+                    (r) -> new Thread(r));
 }
