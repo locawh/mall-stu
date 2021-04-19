@@ -67,7 +67,7 @@ public class MultithreadingServiceImpl implements MultithreadingService {
     }
 
     private void handleCompletableFuture(List<UserPO> users) {
-        CompletableFuture[] cfs = users.stream().map(user -> CompletableFuture.supplyAsync(() -> handle(user), executor)
+        CompletableFuture[] cfs = users.stream().map(user -> CompletableFuture.supplyAsync(() -> handle(user), AsyncThreadPoolUtil.BATCH_APPROVE_POOL)
                 .whenComplete((r, e) -> completeTask(r))).toArray(CompletableFuture[]::new);
         CompletableFuture.allOf(cfs).join();
     }

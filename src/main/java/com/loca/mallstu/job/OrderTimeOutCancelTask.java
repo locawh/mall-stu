@@ -25,7 +25,7 @@ public class OrderTimeOutCancelTask {
     private TestMapper testMapper;
 
 
-    @Scheduled(cron = "*/5 * * * * ?")
+    //@Scheduled(cron = "*/5 * * * * ?")
     public void cancelTimeOutOrder() {
        log.info("执行定时任务，时间={}", LocalDateTime.now());
         testMapper.selectList(null);
