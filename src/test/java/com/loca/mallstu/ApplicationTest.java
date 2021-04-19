@@ -2,11 +2,11 @@ package com.loca.mallstu;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
-import com.loca.mallstu.bean.po.DTO.BatchOperateResultDTO;
+import com.loca.mallstu.bean.dto.BatchOperateResultDTO;
 import com.loca.mallstu.bean.po.UserPO;
 import com.loca.mallstu.common.CommonResult;
 import com.loca.mallstu.service.MultithreadingService;
-import com.loca.mallstu.service.TestService;
+import com.loca.mallstu.service.UserService;
 import com.loca.mallstu.service.UmsMemberService;
 import com.loca.mallstu.utils.RandInfoUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ import java.util.List;
 public class ApplicationTest {
 
     @Autowired
-    private TestService testService;
+    private UserService userService;
 
     @Autowired
     private UmsMemberService umsMemberService;
@@ -39,9 +39,27 @@ public class ApplicationTest {
         UserPO userPO = new UserPO();
         userPO.setName("loca");
         userPO.setAge(211);
-        Boolean aBoolean = testService.addUser(userPO);
+        Boolean aBoolean = userService.addUser(userPO);
         System.out.println(aBoolean);
     }
+
+    @Test
+    public void updateUserTest() {
+        UserPO userPO = new UserPO();
+        userPO.setId(1);
+        userPO.setName("loca");
+        userPO.setAge(111);
+        Boolean aBoolean = userService.updateUser(userPO);
+        System.out.println(aBoolean);
+    }
+
+     @Test
+    public void deleteUserTest() {
+        Boolean aBoolean = userService.deleteUser(1);
+        System.out.println(aBoolean);
+    }
+
+
 
     @Test
     public void batchCreateUser() {

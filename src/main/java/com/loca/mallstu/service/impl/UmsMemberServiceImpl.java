@@ -1,25 +1,16 @@
 package com.loca.mallstu.service.impl;
 
-import com.google.common.collect.Lists;
-import com.loca.mallstu.bean.po.DTO.BatchOperateResultDTO;
-import com.loca.mallstu.bean.po.UserPO;
 import com.loca.mallstu.common.CommonResult;
-import com.loca.mallstu.common.ResultCode;
-import com.loca.mallstu.dao.TestMapper;
+import com.loca.mallstu.dao.UserMapper;
 import com.loca.mallstu.service.RedisService;
 import com.loca.mallstu.service.UmsMemberService;
-import com.loca.mallstu.utils.AsyncThreadPoolUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
-import java.util.concurrent.Callable;
-import java.util.concurrent.Future;
-import java.util.stream.Collectors;
 
 /**
  * @author wangHeng
@@ -39,7 +30,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     private RedisService redisService;
 
     @Autowired
-    private TestMapper testMapper;
+    private UserMapper userMapper;
 
     @Override
     public CommonResult<String> getVerificationCode(String telephone) {

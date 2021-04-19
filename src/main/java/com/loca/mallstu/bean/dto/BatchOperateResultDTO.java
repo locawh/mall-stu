@@ -1,4 +1,4 @@
-package com.loca.mallstu.bean.po.DTO;
+package com.loca.mallstu.bean.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

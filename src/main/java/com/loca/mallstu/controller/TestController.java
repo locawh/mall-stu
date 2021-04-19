@@ -2,7 +2,7 @@ package com.loca.mallstu.controller;
 
 import com.loca.mallstu.bean.po.UserPO;
 import com.loca.mallstu.common.CommonResult;
-import com.loca.mallstu.service.TestService;
+import com.loca.mallstu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
-    private TestService testService;
+    private UserService userService;
 
     @RequestMapping("test")
     public CommonResult<String> test() {
@@ -29,6 +29,6 @@ public class TestController {
         UserPO userPO = new UserPO();
         userPO.setName("loca");
         userPO.setAge(26);
-        return testService.addUser(userPO);
+        return userService.addUser(userPO);
     }
 }

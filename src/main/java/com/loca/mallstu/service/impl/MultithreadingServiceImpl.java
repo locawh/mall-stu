@@ -2,7 +2,7 @@ package com.loca.mallstu.service.impl;
 
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.loca.mallstu.bean.po.DTO.BatchOperateResultDTO;
+import com.loca.mallstu.bean.dto.BatchOperateResultDTO;
 import com.loca.mallstu.bean.po.UserPO;
 import com.loca.mallstu.common.CommonResult;
 import com.loca.mallstu.common.ResultCode;

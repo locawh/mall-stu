@@ -6,23 +6,17 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import java.io.Serializable;
-
 /**
  * @author wangHeng
- * @date  2021-03-24 11:30
+ * @date  2021-04-19 15:44
  */
 @Data
 @TableName(value = "ms_user", autoResultMap = true)
-public class UserPO implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class RolePO {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @TableField(value = "name")
-    private String name;
-
-    @TableField(value = "age")
-    private Integer age;
+    @TableField(value = "role_name")
+    private String roleName;
 }
