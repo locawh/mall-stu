@@ -30,5 +30,6 @@ public class OrderTimeOutCancelTask {
         userMapper.selectList(null);
         List<UserPO> users = userMapper.selectList(Wrappers.lambdaQuery());
         users.forEach(userPO -> log.info("user info =={}", JSON.toJSONString(userPO)));
+        System.out.println("test");
     }
 }
