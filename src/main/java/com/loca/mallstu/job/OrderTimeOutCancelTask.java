@@ -6,6 +6,7 @@ import com.loca.mallstu.bean.po.UserPO;
 import com.loca.mallstu.dao.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -24,12 +25,12 @@ public class OrderTimeOutCancelTask {
     private UserMapper userMapper;
 
 
-    //@Scheduled(cron = "*/5 * * * * ?")
+    @Scheduled(cron = "*/10 * * * * *")
     public void cancelTimeOutOrder() {
-       log.info("执行定时任务，时间={}", LocalDateTime.now());
-        userMapper.selectList(null);
+        log.info("执行定时任务，时间={}", LocalDateTime.now());
+        /*userMapper.selectList(null);
         List<UserPO> users = userMapper.selectList(Wrappers.lambdaQuery());
-        users.forEach(userPO -> log.info("user info =={}", JSON.toJSONString(userPO)));
+        users.forEach(userPO -> log.info("user info =={}", JSON.toJSONString(userPO)));*/
         System.out.println("test");
     }
 }
